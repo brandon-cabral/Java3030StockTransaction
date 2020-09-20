@@ -9,7 +9,8 @@ package edu.uml.bcabral.stockTraderTests;
  */
 
 import edu.uml.bcabral.stocktrader.*;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

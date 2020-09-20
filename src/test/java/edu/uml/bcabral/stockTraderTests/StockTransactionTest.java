@@ -2,7 +2,8 @@ package edu.uml.bcabral.stockTraderTests;
 
 import edu.uml.bcabral.stocktrader.StockSymbolType;
 import edu.uml.bcabral.stocktrader.StockTransaction;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 import static junit.framework.TestCase.assertTrue;
 
 import java.math.BigDecimal;

@@ -1,7 +1,8 @@
 package edu.uml.bcabral.stockTraderTests;
 
 import edu.uml.bcabral.stocktrader.StockServiceFactory;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import static junit.framework.TestCase.assertTrue;
 
