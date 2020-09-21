@@ -24,8 +24,7 @@ public class StockServiceImplementation implements StockService {
 
     @Override
     public StockTransaction getQuote(StockSymbolType symbol, Timestamp timeOfTransaction) {
-        Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        return new StockTransaction(new BigDecimal(100),StockSymbolType.APPL,timestamp);
+        return new StockTransaction(new BigDecimal(100),StockSymbolType.APPL,timeOfTransaction);
     }
 
     /**

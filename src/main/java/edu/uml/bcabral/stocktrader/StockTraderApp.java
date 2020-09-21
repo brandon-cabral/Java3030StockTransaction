@@ -7,22 +7,20 @@ package edu.uml.bcabral.stocktrader;
  *
  */
 
-import java.math.BigDecimal;
-import java.sql.Time;
+
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.List;
 
 public class StockTraderApp {
 
     public static void main(String[] args) {
-        StockService ss = StockServiceFactory.createStockService();
+        StockService stockService = StockServiceFactory.createStockService();
         Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
-        StockTransaction st = ss.getQuote(StockSymbolType.AMZ, timestamp);
-        st.getTime();
-        st.getStockSymbol();
-        st.getPrice();
-        st.toString();
+        StockTransaction stockTransaction = stockService.getQuote(StockSymbolType.AMZ, timestamp); //new stocktransaction
+        System.out.println(stockTransaction.getTime());         //verify time
+        System.out.println(stockTransaction.getStockSymbol());  //verify symbol
+        System.out.println(stockTransaction.getPrice());        // verify price
+        System.out.println(stockTransaction.toString());        //verify to string
 
     }
 }
