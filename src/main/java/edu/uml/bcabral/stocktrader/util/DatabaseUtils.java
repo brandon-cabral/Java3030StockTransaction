@@ -27,7 +27,7 @@ public class DatabaseUtils {
     public static Connection getConnection() throws DatabaseConnectionException{
         Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection =   DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (ClassNotFoundException  | SQLException e)  {
            throw new  DatabaseConnectionException("Could not connection to database." + e.getMessage(), e);

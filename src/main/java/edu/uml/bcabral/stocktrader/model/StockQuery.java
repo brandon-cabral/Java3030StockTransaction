@@ -14,7 +14,7 @@ import java.util.Calendar;
 @Immutable
 public class StockQuery extends StockData{
 
-    private StockSymbolType symbol;
+    private String symbol;
     private Calendar from;
     private Calendar until;
 
@@ -28,7 +28,7 @@ public class StockQuery extends StockData{
      * @throws ParseException if the format of the date String is incorrect. If this happens
      *                        the only recourse is to try again with a correctly formatted String.
      */
-    public StockQuery(@NotNull StockSymbolType symbol, @NotNull String from, @NotNull String until) throws ParseException {
+    public StockQuery(@NotNull String symbol, @NotNull String from, @NotNull String until) throws ParseException {
         super();
         this.symbol = symbol;
         this.from = Calendar.getInstance();
@@ -41,7 +41,7 @@ public class StockQuery extends StockData{
     /**
      * @return get the stock symbol associated with this query
      */
-    public StockSymbolType getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 

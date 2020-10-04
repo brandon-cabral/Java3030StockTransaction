@@ -125,7 +125,7 @@ public class BasicStockQuoteApplication {
         }
         try {
 
-            StockQuery stockQuery = new StockQuery(StockSymbolType.valueOf(args[0].toUpperCase()), args[1], args[2]);
+            StockQuery stockQuery = new StockQuery(args[0], args[1], args[2]);
             StockService stockService = StockServiceFactory.getInstance();
             BasicStockQuoteApplication basicStockQuoteApplication = new BasicStockQuoteApplication(stockService);
             basicStockQuoteApplication.displayStockQuotes(stockQuery);

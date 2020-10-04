@@ -30,7 +30,7 @@ public class StockServiceImplementation implements StockService {
      *                               error.
      */
     @Override
-    public StockQuote getQuote(StockSymbolType symbol) {
+    public StockQuote getQuote(String symbol) {
         // a dead simple implementation.
         return new StockQuote(new BigDecimal(100), Calendar.getInstance().getTime(), symbol);
     }
@@ -47,7 +47,7 @@ public class StockServiceImplementation implements StockService {
      * error.
      */
     @Override
-    public List<StockQuote> getQuote(StockSymbolType symbol, Calendar from, Calendar until) {
+    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) {
         // a dead simple implementation.
         List<StockQuote> stockQuotes = new ArrayList<>();
         Date aDay = from.getTime();

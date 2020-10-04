@@ -33,19 +33,19 @@ public class DatabaseStockService implements StockService {
      *                               error.
      */
     @Override
-    public StockQuote getQuote(StockSymbolType symbol) throws StockServiceException {
+    public StockQuote getQuote(String symbol) throws StockServiceException {
         // todo - this is a pretty lame implementation why?
         List<StockQuote> stockQuotes = null;
         try {
             Connection connection = DatabaseUtils.getConnection();
             Statement statement = connection.createStatement();
-            String queryString = "select * from quotes where symbol = '" + symbol + "'";
+            String queryString = "select * from quotes where symbol='" + symbol + "'";
 
             ResultSet resultSet = statement.executeQuery(queryString);
             stockQuotes = new ArrayList<>(resultSet.getFetchSize());
             while(resultSet.next()) {
 
-                StockSymbolType symbolValue = StockSymbolType.valueOf(resultSet.getString("symbol"));
+                String symbolValue = resultSet.getString("symbol");
                 Date time = resultSet.getDate("time");
                 BigDecimal price = resultSet.getBigDecimal("price");
                 stockQuotes.add(new StockQuote(price, time, symbolValue));
@@ -72,21 +72,21 @@ public class DatabaseStockService implements StockService {
      * error.
      */
     @Override
-    public List<StockQuote> getQuote(StockSymbolType symbol, Calendar from, Calendar until) throws StockServiceException {
+    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException {
 
         List<StockQuote> stockQuotes = null;
 
         try{
             Connection connection = DatabaseUtils.getConnection();
             Statement statement = connection.createStatement();
-            String queryString = "select * from quotes where symbol = '" + symbol + " and time between = '" + from + " and '" + until + "'";
+            String queryString = "select * from quotes where symbol='" + symbol + "' and time between='" + from + "' and '" + until + "'";
 
             ResultSet resultSet = statement.executeQuery(queryString);
             stockQuotes = new ArrayList<>(resultSet.getFetchSize());
 
             while(resultSet.next()) {
 
-                StockSymbolType symbolValue = StockSymbolType.valueOf(resultSet.getString("symbol"));
+                String symbolValue = resultSet.getString("symbol");
                 Date time = resultSet.getDate("time");
                 BigDecimal price = resultSet.getBigDecimal("price");
                 stockQuotes.add(new StockQuote(price, time, symbolValue));

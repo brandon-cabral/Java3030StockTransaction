@@ -29,7 +29,7 @@ public interface StockService {
          *                               If this happens, trying the service may work, depending on the actual cause of the
          *                               error.
          */
-        StockQuote getQuote(StockSymbolType symbol) throws StockServiceException;
+        StockQuote getQuote(String symbol) throws StockServiceException;
 
         /**
          * Get a historical list of stock quotes for the provide symbol
@@ -43,5 +43,5 @@ public interface StockService {
          * error.
          */
 
-        List<StockQuote> getQuote(StockSymbolType symbol, Calendar from, Calendar until) throws StockServiceException;
+        List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException;
 }

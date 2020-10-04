@@ -16,7 +16,7 @@ public class DatabaseStockServiceTest {
     @Test
     public void testGetQuote() throws Exception {
         DatabaseStockService databaseStockService = new DatabaseStockService();
-        StockSymbolType symbol = StockSymbolType.valueOf("APPL");
+        String symbol = "APPL";
         StockQuote stockQuote = databaseStockService.getQuote(symbol);
         assertNotNull("Verify we can get a stock quote from the db", stockQuote);
         assertEquals("Make sure the symbols match", symbol, stockQuote.getSymbol());
