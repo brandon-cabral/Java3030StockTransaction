@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stockTraderTests;
+package edu.uml.bcabral.stockTraderTests.services;
 
 /**
  * Brandon Cabral - Java 3030 StockTrader - 09/20/2020
@@ -9,8 +9,8 @@ package edu.uml.bcabral.stockTraderTests;
  */
 
 
-import edu.uml.bcabral.stocktrader.StockService;
-import edu.uml.bcabral.stocktrader.StockServiceFactory;
+import edu.uml.bcabral.stocktrader.services.StockService;
+import edu.uml.bcabral.stocktrader.services.StockServiceFactory;
 
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class TestStockServiceFactory {
 
     @Test
     public void testStockServiceFactory(){
-        StockService serviceFactory = StockServiceFactory.createStockService();
+        StockService serviceFactory = StockServiceFactory.getInstance();
         assertNotNull("verify stock service factory returns instance", serviceFactory);   //verify not null
     }
     @Test

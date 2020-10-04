@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stocktrader;
+package edu.uml.bcabral.stocktrader.services;
 
 /**
  * Brandon Cabral - Java 3030 StockTrader - 09/20/2020
@@ -8,6 +8,8 @@ package edu.uml.bcabral.stocktrader;
  * getTime, toString.
  *
  */
+
+import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

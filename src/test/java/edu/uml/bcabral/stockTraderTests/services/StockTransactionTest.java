@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stockTraderTests;
+package edu.uml.bcabral.stockTraderTests.services;
 
 /**
  * Brandon Cabral - Java 3030 StockTrader - 09/20/2020
@@ -8,8 +8,8 @@ package edu.uml.bcabral.stockTraderTests;
  *
  */
 
-import edu.uml.bcabral.stocktrader.StockSymbolType;
-import edu.uml.bcabral.stocktrader.StockTransaction;
+import edu.uml.bcabral.stocktrader.model.StockSymbolType;
+import edu.uml.bcabral.stocktrader.services.StockTransaction;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;

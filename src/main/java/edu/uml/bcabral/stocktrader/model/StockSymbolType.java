@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stocktrader;
+package edu.uml.bcabral.stocktrader.model;
 
 /**
  * Brandon Cabral - Java3030 StockTrader - 09/20/2020
