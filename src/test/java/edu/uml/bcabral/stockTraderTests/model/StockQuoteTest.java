@@ -18,14 +18,14 @@ public class StockQuoteTest {
 
     private BigDecimal price;
     private Date date;
-    private StockSymbolType symbol;
+    private String symbol;
     private StockQuote stockQuote;
 
     @Before
     public void setUp() {
         price = new BigDecimal(100);
         date = Calendar.getInstance().getTime();
-        symbol = StockSymbolType.valueOf("APPL");
+        symbol = "APPL";
         stockQuote = new StockQuote(price, date, symbol);
     }
 

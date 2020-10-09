@@ -6,6 +6,7 @@ import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import edu.uml.bcabral.stocktrader.services.StockService;
 import edu.uml.bcabral.stocktrader.services.StockServiceException;
 import edu.uml.bcabral.stocktrader.services.StockServiceFactory;
+import edu.uml.bcabral.stocktrader.util.Interval;
 
 import java.text.ParseException;
 import java.util.List;
@@ -73,14 +74,12 @@ public class BasicStockQuoteApplication {
     public String displayStockQuotes(StockQuery stockQuery) throws StockServiceException {
         StringBuilder stringBuilder = new StringBuilder();
 
-        List<StockQuote> stockQuotes =
-                stockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil());
+        List<StockQuote> stockQuotes = stockService.getQuote(stockQuery.getSymbol(), stockQuery.getFrom(), stockQuery.getUntil(), Interval.DAY);
 
         stringBuilder.append("Stock quotes for: " + stockQuery.getSymbol() + "\n");
         for (StockQuote stockQuote : stockQuotes) {
-            stringBuilder.append(stockQuote.toString());
+            stringBuilder.append(stockQuote.toString()+'\n');
         }
-
         return stringBuilder.toString();
     }
 
@@ -125,10 +124,12 @@ public class BasicStockQuoteApplication {
         }
         try {
 
-            StockQuery stockQuery = new StockQuery(StockSymbolType.valueOf(args[0].toUpperCase()), args[1], args[2]);
+            StockQuery stockQuery = new StockQuery(args[0], args[1], args[2]);
             StockService stockService = StockServiceFactory.getInstance();
+
             BasicStockQuoteApplication basicStockQuoteApplication = new BasicStockQuoteApplication(stockService);
-            basicStockQuoteApplication.displayStockQuotes(stockQuery);
+
+            System.out.println(basicStockQuoteApplication.displayStockQuotes(stockQuery));
 
         } catch (ParseException e) {
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
@@ -136,6 +137,9 @@ public class BasicStockQuoteApplication {
         } catch (StockServiceException e) {
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
             programTerminationMessage = "StockService failed: " + e.getMessage();
+        } catch(Throwable t){
+            exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
+            programTerminationMessage = "General Application Error: " + t.getMessage();
         }
 
         exit(exitStatus, programTerminationMessage);
