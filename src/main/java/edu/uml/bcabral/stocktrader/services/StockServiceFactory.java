@@ -1,13 +1,6 @@
 package edu.uml.bcabral.stocktrader.services;
 
-import edu.uml.bcabral.stocktrader.model.StockQuote;
-import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Brandon Cabral - Java 3030 StockTrader - 09/20/2020
@@ -18,6 +11,8 @@ import java.util.List;
 
 
 public class StockServiceFactory{
+
+    private StockServiceFactory() {}
 
     /**
      *

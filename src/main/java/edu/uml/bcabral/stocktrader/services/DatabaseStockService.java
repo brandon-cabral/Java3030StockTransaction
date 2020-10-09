@@ -1,10 +1,11 @@
 package edu.uml.bcabral.stocktrader.services;
 
+import edu.uml.bcabral.stocktrader.model.StockData;
 import edu.uml.bcabral.stocktrader.model.StockQuote;
-import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import edu.uml.bcabral.stocktrader.util.DatabaseConnectionException;
 import edu.uml.bcabral.stocktrader.util.DatabaseUtils;
-import edu.uml.bcabral.stocktrader.services.StockServiceException;
+import edu.uml.bcabral.stocktrader.util.Interval;
+
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -12,9 +13,11 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 /**
  * An implementation of the StockService interface that gets
@@ -72,24 +75,44 @@ public class DatabaseStockService implements StockService {
      * error.
      */
     @Override
-    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException {
+    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, Interval interval) throws StockServiceException {
 
         List<StockQuote> stockQuotes = null;
 
         try{
             Connection connection = DatabaseUtils.getConnection();
             Statement statement = connection.createStatement();
-            String queryString = "select * from quotes where symbol='" + symbol + "' and time between='" + from + "' and '" + until + "'";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(StockData.dateFormat);
+            String fromDate = simpleDateFormat.format(from.getTime());
+            String untilDate = simpleDateFormat.format(until.getTime());
+
+
+            String queryString = "select * from quotes where symbol = '" + symbol + "' and time BETWEEN '" + fromDate + "' and '" + untilDate + "'";
+
 
             ResultSet resultSet = statement.executeQuery(queryString);
-            stockQuotes = new ArrayList<>(resultSet.getFetchSize());
+            stockQuotes = new ArrayList<>();
+            StockQuote previousStockQuote = null;
 
-            while(resultSet.next()) {
-
+            Calendar calendar = Calendar.getInstance();
+            while (resultSet.next()) {
                 String symbolValue = resultSet.getString("symbol");
-                Date time = resultSet.getDate("time");
+                Timestamp timeStamp = resultSet.getTimestamp("time");
+                calendar.setTimeInMillis(timeStamp.getTime());
                 BigDecimal price = resultSet.getBigDecimal("price");
-                stockQuotes.add(new StockQuote(price, time, symbolValue));
+                java.util.Date time = calendar.getTime();
+                StockQuote currentStockQuote = new StockQuote(price, time, symbolValue);
+
+                if (previousStockQuote == null) { // first time through always add stockquote
+
+                    stockQuotes.add(currentStockQuote);
+
+                } else if (isInterval(currentStockQuote.getDate(), interval, previousStockQuote.getDate())) {
+
+                    stockQuotes.add(currentStockQuote);
+                }
+
+                previousStockQuote = currentStockQuote;
             }
 
         }catch(DatabaseConnectionException | SQLException exception){
@@ -99,5 +122,12 @@ public class DatabaseStockService implements StockService {
             throw new StockServiceException("There is no stock data for: " + symbol + "in range of " + from + "-" + until);
         }
         return stockQuotes;
+    }
+
+    private boolean isInterval(java.util.Date endDate, Interval interval, java.util.Date startDate) {
+        Calendar startDatePlusInterval = Calendar.getInstance();
+        startDatePlusInterval.setTime(startDate);
+        startDatePlusInterval.add(Calendar.MINUTE, interval.getMinutes());
+        return endDate.after(startDatePlusInterval.getTime());
     }
 }

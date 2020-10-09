@@ -18,7 +18,7 @@ public class DatabaseUtils {
     // in a real program these values would be a configurable property and not hard coded.
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/stocks";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/stocks?useSSL=false";
 
     //  Database credentials
     private static final String USER = "monty";
@@ -27,7 +27,7 @@ public class DatabaseUtils {
     public static Connection getConnection() throws DatabaseConnectionException{
         Connection connection = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             connection =   DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (ClassNotFoundException  | SQLException e)  {
            throw new  DatabaseConnectionException("Could not connection to database." + e.getMessage(), e);

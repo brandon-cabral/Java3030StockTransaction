@@ -2,6 +2,7 @@ package edu.uml.bcabral.stocktrader.services;
 
 import edu.uml.bcabral.stocktrader.model.StockQuote;
 import edu.uml.bcabral.stocktrader.model.StockSymbolType;
+import edu.uml.bcabral.stocktrader.util.Interval;
 
 /**
  * Brandon Cabral - Java 3030 StockTrader - 09/20/2020
@@ -43,5 +44,5 @@ public interface StockService {
          * error.
          */
 
-        List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException;
+        List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, Interval interval) throws StockServiceException;
 }

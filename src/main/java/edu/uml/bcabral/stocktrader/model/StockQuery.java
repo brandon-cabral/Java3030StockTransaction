@@ -6,6 +6,7 @@ import org.apache.http.annotation.Immutable;
 
 import javax.validation.constraints.NotNull;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -14,9 +15,9 @@ import java.util.Calendar;
 @Immutable
 public class StockQuery extends StockData{
 
-    private String symbol;
-    private Calendar from;
-    private Calendar until;
+    private final String symbol;
+    private final Calendar from;
+    private final Calendar until;
 
     /**
      * Create a new instance from string data. This constructor will convert
@@ -24,7 +25,7 @@ public class StockQuery extends StockData{
      *
      * @param symbol the stock symbol
      * @param from   the start date as a string in the form of yyyy/MM/dd
-     * @param from   the end date as a string in the form of yyyy/MM/dd
+     * @param until   the end date as a string in the form of yyyy/MM/dd
      * @throws ParseException if the format of the date String is incorrect. If this happens
      *                        the only recourse is to try again with a correctly formatted String.
      */
@@ -33,7 +34,6 @@ public class StockQuery extends StockData{
         this.symbol = symbol;
         this.from = Calendar.getInstance();
         this.until = Calendar.getInstance();
-        System.out.println(simpleDateFormat);
         this.from.setTime(simpleDateFormat.parse(from));
         this.until.setTime(simpleDateFormat.parse(until));
     }

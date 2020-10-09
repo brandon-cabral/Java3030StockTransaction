@@ -10,6 +10,7 @@ package edu.uml.bcabral.stocktrader.services;
 
 import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import edu.uml.bcabral.stocktrader.model.StockQuote;
+import edu.uml.bcabral.stocktrader.util.Interval;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;     //imports
@@ -47,7 +48,7 @@ public class StockServiceImplementation implements StockService {
      * error.
      */
     @Override
-    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) {
+    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, Interval interval) {
         // a dead simple implementation.
         List<StockQuote> stockQuotes = new ArrayList<>();
         Date aDay = from.getTime();

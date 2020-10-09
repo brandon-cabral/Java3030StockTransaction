@@ -32,5 +32,6 @@ public class DatabaseUtilsTest {
     public void initializeDatabaseTest() throws Exception {
         Connection connection = DatabaseUtils.getConnection();
 
+
     }
 }
