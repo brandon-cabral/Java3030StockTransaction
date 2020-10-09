@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * A class that contains database related utility methods.
@@ -27,12 +28,32 @@ public class DatabaseUtils {
     public static Connection getConnection() throws DatabaseConnectionException{
         Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (ClassNotFoundException  | SQLException e)  {
            throw new  DatabaseConnectionException("Could not connection to database." + e.getMessage(), e);
         }
         return connection;
+    }
+
+    /**
+     * Execute SQL code
+     * @param someSQL  the code to execute
+     * @return true if the operation succeeded.
+     * @throws DatabaseException if accessing and executing the sql failed in an unexpected way.
+     *
+     */
+    public static boolean executeSQL(String someSQL) throws DatabaseException {
+        Connection connection = null;
+        boolean returnValue = false;
+        try {
+            connection = DatabaseUtils.getConnection();
+            Statement statement = connection.createStatement();
+            returnValue = statement.execute(someSQL);
+        } catch (DatabaseConnectionException | SQLException e) {
+            throw new DatabaseException(e.getMessage(), e);
+        }
+        return returnValue;
     }
 
     /**

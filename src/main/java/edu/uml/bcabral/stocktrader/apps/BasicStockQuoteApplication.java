@@ -78,9 +78,8 @@ public class BasicStockQuoteApplication {
 
         stringBuilder.append("Stock quotes for: " + stockQuery.getSymbol() + "\n");
         for (StockQuote stockQuote : stockQuotes) {
-            stringBuilder.append(stockQuote.toString());
+            stringBuilder.append(stockQuote.toString()+'\n');
         }
-
         return stringBuilder.toString();
     }
 
@@ -130,7 +129,7 @@ public class BasicStockQuoteApplication {
 
             BasicStockQuoteApplication basicStockQuoteApplication = new BasicStockQuoteApplication(stockService);
 
-            basicStockQuoteApplication.displayStockQuotes(stockQuery);
+            System.out.println(basicStockQuoteApplication.displayStockQuotes(stockQuery));
 
         } catch (ParseException e) {
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
