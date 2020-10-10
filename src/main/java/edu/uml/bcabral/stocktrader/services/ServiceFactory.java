@@ -10,15 +10,19 @@ package edu.uml.bcabral.stocktrader.services;
  */
 
 
-public class StockServiceFactory{
+public class ServiceFactory {
 
-    private StockServiceFactory() {}
+    private ServiceFactory() {}
 
     /**
      *
      * @return get a <CODE>StockService</CODE> instance
      */
-    public static StockService getInstance() {
+    public static StockService getStockServiceInstance() {
         return new DatabaseStockService();
+    }
+
+    public static PersonService getPersonServiceInstance(){
+        return new DatabasePersonService();
     }
 }
