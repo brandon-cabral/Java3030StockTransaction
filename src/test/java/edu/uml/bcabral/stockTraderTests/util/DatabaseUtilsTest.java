@@ -1,5 +1,6 @@
 package edu.uml.bcabral.stockTraderTests.util;
 
+import edu.uml.bcabral.stockTraderTests.model.PersonTest;
 import edu.uml.bcabral.stocktrader.util.DatabaseUtils;
 import org.junit.Test;
 
@@ -15,23 +16,22 @@ import static org.junit.Assert.assertTrue;
 public class DatabaseUtilsTest {
 
     @Test
-    public void testGetConnection() throws Exception{
+    public void testGetConnection() throws Exception {
         Connection connection = DatabaseUtils.getConnection();
-        assertNotNull("verify that we can get a connection ok",connection);
+        assertNotNull("verify that we can get a connection ok", connection);
     }
 
     @Test
-    public void testGetConnectionWorks() throws Exception{
+    public void testGetConnectionWorks() throws Exception {
         Connection connection = DatabaseUtils.getConnection();
         Statement statement = connection.createStatement();
         boolean execute = statement.execute("select * from quotes");
-        assertTrue("verify that we can execute a statement",execute);
+        assertTrue("verify that we can execute a statement", execute);
     }
 
     @Test
     public void initializeDatabaseTest() throws Exception {
         Connection connection = DatabaseUtils.getConnection();
-
-
     }
 }
+

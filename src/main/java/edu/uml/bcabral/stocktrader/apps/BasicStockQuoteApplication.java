@@ -2,10 +2,9 @@ package edu.uml.bcabral.stocktrader.apps;
 
 import edu.uml.bcabral.stocktrader.model.StockQuery;
 import edu.uml.bcabral.stocktrader.model.StockQuote;
-import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import edu.uml.bcabral.stocktrader.services.StockService;
 import edu.uml.bcabral.stocktrader.services.StockServiceException;
-import edu.uml.bcabral.stocktrader.services.StockServiceFactory;
+import edu.uml.bcabral.stocktrader.services.ServiceFactory;
 import edu.uml.bcabral.stocktrader.util.Interval;
 
 import java.text.ParseException;
@@ -125,7 +124,7 @@ public class BasicStockQuoteApplication {
         try {
 
             StockQuery stockQuery = new StockQuery(args[0], args[1], args[2]);
-            StockService stockService = StockServiceFactory.getInstance();
+            StockService stockService = ServiceFactory.getStockServiceInstance();
 
             BasicStockQuoteApplication basicStockQuoteApplication = new BasicStockQuoteApplication(stockService);
 

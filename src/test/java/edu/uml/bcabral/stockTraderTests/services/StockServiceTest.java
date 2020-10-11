@@ -9,7 +9,7 @@ package edu.uml.bcabral.stockTraderTests.services;
  */
 
 import edu.uml.bcabral.stocktrader.services.StockService;
-import edu.uml.bcabral.stocktrader.services.StockServiceFactory;
+import edu.uml.bcabral.stocktrader.services.ServiceFactory;
 import org.junit.Test;
 
 
@@ -18,11 +18,11 @@ import static junit.framework.TestCase.assertTrue;
 
 public class StockServiceTest {
 
-        @Test
-        public void testStockService(){
-            StockService serviceFactory = StockServiceFactory.getInstance();
-            assertNotNull(serviceFactory);      //verify servicefactory is not null
-        }
+    @Test
+    public void testStockService(){
+        StockService serviceFactory = ServiceFactory.getStockServiceInstance();
+        assertNotNull(serviceFactory);      //verify servicefactory is not null
+    }
     @Test
     public void shouldAnswerWithTrue(){
         assertTrue(true);
