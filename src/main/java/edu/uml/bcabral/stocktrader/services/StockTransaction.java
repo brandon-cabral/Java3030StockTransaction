@@ -4,7 +4,7 @@ package edu.uml.bcabral.stocktrader.services;
  * Brandon Cabral - Java 3030 StockTrader - 09/20/2020
  *
  * Class StockTransaction that defines the methods and private variables for a
- * StockTransaction Instantiation. Includes Constructor, getPrice, getStockSymbol,
+ * StockTransaction Instantiation. Includes Constructor, getPrice, getStock_symbol,
  * getTime, toString.
  *
  */

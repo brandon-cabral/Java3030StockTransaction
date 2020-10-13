@@ -6,7 +6,7 @@ public class Person_Stocks {
 
     private int id;
     private Person person;
-    private String stockSymbol;
+    private Stock_Symbol stock_symbol;
 
 
     /**
@@ -18,10 +18,10 @@ public class Person_Stocks {
      * Create a valid Person_Stocks
      *
      * @param person
-     * @param stockSymbol
+     * @param stock_symbol
      */
-    public Person_Stocks(Person person, String stockSymbol){
-        setStockSymbol(stockSymbol);
+    public Person_Stocks(Person person, Stock_Symbol stock_symbol){
+        setStock_symbol(stock_symbol);
         setPerson(person);
     }
 
@@ -69,17 +69,17 @@ public class Person_Stocks {
      * @return String stock_symbol
      */
     @Basic
-    @Column(name = "stock_symbol", nullable = false, insertable = true, updatable = true, length = 4)
-    public String getStockSymbol(){
-        return stockSymbol;
+    @Column(name = "symbol", nullable = false, insertable = true, updatable = true, length = 4)
+    public Stock_Symbol getStock_symbol(){
+        return stock_symbol;
     }
 
     /**
      * Specify the stock being watched.
      * @param stocksymbol the stock symbol 4 characters long
      */
-    public void setStockSymbol(String stocksymbol){
-        this.stockSymbol = stocksymbol;
+    public void setStock_symbol(Stock_Symbol stocksymbol){
+        this.stock_symbol = stocksymbol;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Person_Stocks {
     public int hashCode() {
         int result = id;
         result = 31 * result + person.hashCode();
-        result = 31 * result + stockSymbol.hashCode();
+        result = 31 * result + stock_symbol.hashCode();
         return result;
     }
 
@@ -107,7 +107,7 @@ public class Person_Stocks {
         return "Person_Stocks{" +
                 "id=" + id +
                 ", person=" + person +
-                ", stocksymbol=" + stockSymbol +
+                ", stocksymbol=" + stock_symbol +
                 '}';
     }
 

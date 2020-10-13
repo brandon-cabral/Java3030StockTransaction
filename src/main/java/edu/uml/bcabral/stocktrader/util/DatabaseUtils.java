@@ -2,6 +2,7 @@ package edu.uml.bcabral.stocktrader.util;
 
 import com.ibatis.common.jdbc.ScriptRunner;
 import edu.uml.bcabral.stocktrader.services.DatabasePersonService;
+import edu.uml.bcabral.stocktrader.services.DatabasesAcessObject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -188,7 +189,7 @@ public class DatabaseUtils {
      * if no value was found matching the criteria.
      */
     @SuppressWarnings("unchecked")  // API requires unchecked OK per guidelines
-    public static <T extends DatabasePersonService> T findUniqueResultBy(String property,
+    public static <T extends DatabasesAcessObject> T findUniqueResultBy(String property,
                                                                          Object value,
                                                                          Class T,
                                                                          boolean handleTransaction) {
@@ -234,7 +235,7 @@ public class DatabaseUtils {
      * if no value was found matching the criteria.
      */
     @SuppressWarnings("unchecked")  // API requires unchecked OK per guidelines
-    public static <T extends DatabasePersonService> List<T> findResultsBy(String property,
+    public static <T extends DatabasesAcessObject> List<T> findResultsBy(String property,
                                                                           Object value,
                                                                           Class T,
                                                                           boolean handleTransaction) {
