@@ -12,8 +12,7 @@ import javax.persistence.*;
 public class Person {
 
     private int id;
-    private String first_name;
-    private String last_name;
+    private String user_name;
 
     /**
      * Primary Key ID, links to a specific person in the person table.
@@ -35,40 +34,23 @@ public class Person {
     }
 
     /**
-     * Gets the first_name for a person.
+     * Gets the user_name for a person.
      * @return the person's first name
      */
     @Basic
-    @Column(name = "first_name", nullable = false, insertable = true, updatable = true, length = 256)
-    public String getFirst_name(){
-        return first_name;
+    @Column(name = "user_name", nullable = false, insertable = true, updatable = true, length = 256)
+    public String getUser_name(){
+        return user_name;
     }
 
     /**
      *Sets the first_name for a person from the person table
-     * @param first String value for first name
+     * @param name String value for user_name
      */
-    public void setFirst_name(String first){
-        this.first_name = first;
+    public void setUser_name(String name){
+        this.user_name = name;
     }
 
-    /**
-     * Gets the last_name for a person.
-     * @return the person's last name
-     */
-    @Basic
-    @Column(name = "last_name", nullable = false, insertable = true, updatable = true, length = 256)
-    public String getLast_name(){
-        return last_name;
-    }
-
-    /**
-     *Sets the first_name for a person from the person table
-     * @param last String value for first name
-     */
-    public void setLast_name(String last){
-        this.last_name = last;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -78,10 +60,7 @@ public class Person {
         Person person = (Person) o;
 
         if (id != person.id) return false;
-        if (first_name != null ? !first_name.equals(person.first_name) : person.first_name != null) {
-            return false;
-        }
-        if (last_name != null ? !last_name.equals(person.last_name) : person.last_name != null) {
+        if (user_name != null ? !user_name.equals(person.user_name) : person.user_name != null) {
             return false;
         }
         return true;
@@ -90,8 +69,7 @@ public class Person {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (first_name != null ? first_name.hashCode() : 0);
-        result = 31 * result + (last_name != null ? last_name.hashCode() : 0);
+        result = 31 * result + (user_name != null ? user_name.hashCode() : 0);
         return result;
     }
 
@@ -99,8 +77,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", firstName='" + first_name + '\\' +
-                ", lastName='" + last_name + '\\' +
+                ", firstName='" + user_name + '\\' +
                 '}';
     }
 

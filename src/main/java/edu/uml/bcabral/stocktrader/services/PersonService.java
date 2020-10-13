@@ -1,6 +1,8 @@
 package edu.uml.bcabral.stocktrader.services;
 
 import edu.uml.bcabral.stocktrader.model.Person;
+import edu.uml.bcabral.stocktrader.model.Stock_Symbol;
+
 import java.util.List;
 
 public interface PersonService {
@@ -29,7 +31,7 @@ public interface PersonService {
      * @throws PersonServiceException if a service can not read or write to the requested data
      *                                or otherwise perform the requested operation.
      */
-    List<String> getStockSymbols(Person person) throws PersonServiceException;
+    List<Stock_Symbol> getStockSymbols(Person person) throws PersonServiceException;
 
 
     /**
@@ -40,5 +42,5 @@ public interface PersonService {
      * @throws PersonServiceException if a service can not read or write to the requested data
      *                                or otherwise perform the requested operation.
      */
-    void addStockSymbolToPerson(String stockSymbol, Person person) throws PersonServiceException;
+    void addStockSymbolToPerson(Stock_Symbol stockSymbol, Person person) throws PersonServiceException;
 }

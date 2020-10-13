@@ -18,6 +18,7 @@
         <property name="hibernate.connection.password">some_pass</property>
 
         <mapping class="edu.uml.bcabral.stocktrader.model.Person"/>
+        <mapping class="edu.uml.bcabral.stocktrader.model.Stock_Symbol"/>
         <mapping class="edu.uml.bcabral.stocktrader.model.Person_Stocks"/>
 <!--        <mapping class="com.origamisoftware.teach.advanced.model.PersonHobby"/>-->
 

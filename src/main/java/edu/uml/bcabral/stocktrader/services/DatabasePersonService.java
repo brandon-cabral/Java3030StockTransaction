@@ -2,6 +2,7 @@ package edu.uml.bcabral.stocktrader.services;
 
 import edu.uml.bcabral.stocktrader.model.Person;
 import edu.uml.bcabral.stocktrader.model.Person_Stocks;
+import edu.uml.bcabral.stocktrader.model.Stock_Symbol;
 import edu.uml.bcabral.stocktrader.util.DatabaseUtils;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -74,10 +75,10 @@ public class DatabasePersonService implements PersonService {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<String> getStockSymbols(Person person){
+    public List<Stock_Symbol> getStockSymbols(Person person){
         Session session =  DatabaseUtils.getSessionFactory().openSession();
         Transaction transaction = null;
-        List<String> stockSymbols = new ArrayList<>();
+        List<Stock_Symbol> stockSymbols = new ArrayList<>();
         try {
             transaction = session.beginTransaction();
             Criteria criteria = session.createCriteria(Person_Stocks.class);
@@ -91,7 +92,7 @@ public class DatabasePersonService implements PersonService {
 
             List<Person_Stocks> list = criteria.list();
             for (Person_Stocks personStocks : list) {
-                stockSymbols.add(personStocks.getStockSymbol());
+                stockSymbols.add(personStocks.getStock_symbol());
             }
             transaction.commit();
         } catch (HibernateException e) {
@@ -107,13 +108,13 @@ public class DatabasePersonService implements PersonService {
     }
 
     @Override
-    public void addStockSymbolToPerson(String stockSymbol, Person person) throws PersonServiceException {
+    public void addStockSymbolToPerson(Stock_Symbol stockSymbol, Person person) throws PersonServiceException {
         Session session =  DatabaseUtils.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             Person_Stocks personStocks = new Person_Stocks();
-            personStocks.setStockSymbol(stockSymbol);
+            personStocks.setStock_symbol(stockSymbol);
             personStocks.setPerson(person);
             session.saveOrUpdate(personStocks);
             transaction.commit();
