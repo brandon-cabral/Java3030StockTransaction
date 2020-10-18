@@ -1,7 +1,6 @@
 package edu.uml.bcabral.stocktrader.services;
 
 import edu.uml.bcabral.stocktrader.model.StockQuote;
-import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import edu.uml.bcabral.stocktrader.util.Interval;
 
 /**
@@ -39,10 +38,21 @@ public interface StockService {
          * @param from   the date of the first stock quote
          * @param until  the date of the last stock quote
          * @return a list of StockQuote instances
-         * @throws   StockServiceException if using the service generates an exception.
-         * If this happens, trying the service may work, depending on the actual cause of the
-         * error.
+         * @throws StockServiceException if using the service generates an exception.
+         *                               If this happens, trying the service may work, depending on the actual cause of the
+         *                               error.
          */
 
         List<StockQuote> getQuote(String symbol, Calendar from, Calendar until, Interval interval) throws StockServiceException;
+
+        void addOrUpdateStockQuotes(List<String> stock) throws StockServiceException;
+
+        /**
+         * Get a list of all StockQuotes
+         *
+         * @return a list of stockquote instances
+         * @throws StockServiceException
+         */
+
+        public List<StockQuote> getStockQuotes() throws StockServiceException;
 }

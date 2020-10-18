@@ -2,7 +2,6 @@ package edu.uml.bcabral.stockTraderTests.apps.stockquote;
 
 import edu.uml.bcabral.stocktrader.model.StockQuery;
 import edu.uml.bcabral.stocktrader.model.StockQuote;
-import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import edu.uml.bcabral.stocktrader.services.StockService;
 import edu.uml.bcabral.stocktrader.services.StockServiceException;
 import edu.uml.bcabral.stocktrader.apps.BasicStockQuoteApplication;

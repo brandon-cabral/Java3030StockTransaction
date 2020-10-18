@@ -1,7 +1,6 @@
 package edu.uml.bcabral.stockTraderTests.services;
 
 import edu.uml.bcabral.stocktrader.model.StockQuote;
-import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import edu.uml.bcabral.stocktrader.services.DatabaseStockService;
 import org.junit.Test;
 

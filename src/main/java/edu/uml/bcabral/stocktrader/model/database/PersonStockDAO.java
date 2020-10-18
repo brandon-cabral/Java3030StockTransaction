@@ -1,28 +1,28 @@
-package edu.uml.bcabral.stocktrader.model;
+package edu.uml.bcabral.stocktrader.model.database;
 
 import javax.persistence.*;
 
-public class Person_Stocks {
+public class PersonStockDAO {
 
     private int id;
-    private Person person;
-    private Stock_Symbol stock_symbol;
+    private PersonDAO personDAO;
+    private StockSymbolDAO stock_symbolDAO;
 
 
     /**
-     * Creates a Person_Stocks that must be initialized for Hibernate.
+     * Creates a PersonStockDAO that must be initialized for Hibernate.
      */
-    public Person_Stocks(){}
+    public PersonStockDAO(){}
 
     /**
-     * Create a valid Person_Stocks
+     * Create a valid PersonStockDAO
      *
-     * @param person
-     * @param stock_symbol
+     * @param personDAO
+     * @param stock_symbolDAO
      */
-    public Person_Stocks(Person person, Stock_Symbol stock_symbol){
-        setStock_symbol(stock_symbol);
-        setPerson(person);
+    public PersonStockDAO(PersonDAO personDAO, StockSymbolDAO stock_symbolDAO){
+        setStock_symbolDAO(stock_symbolDAO);
+        setPersonDAO(personDAO);
     }
 
     /**
@@ -46,40 +46,40 @@ public class Person_Stocks {
     }
 
     /**
-     * get a Person following this stock symbol
-     * @return Person
+     * get a PersonDAO following this stock symbol
+     * @return PersonDAO
      */
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "ID", nullable = false)
-    public Person getPerson(){
-        return person;
+    public PersonDAO getPersonDAO(){
+        return personDAO;
     }
 
     /**
-     * Set the specific Person associated with the stock
+     * Set the specific PersonDAO associated with the stock
      *
-     * @param person
+     * @param personDAO
      */
-    public void setPerson(Person person){
-        this.person = person;
+    public void setPersonDAO(PersonDAO personDAO){
+        this.personDAO = personDAO;
     }
 
     /**
-     *Get the Stock Symbol for a specific person
-     * @return String stock_symbol
+     *Get the Stock Symbol for a specific personDAO
+     * @return String stock_symbolDAO
      */
     @Basic
     @Column(name = "symbol", nullable = false, insertable = true, updatable = true, length = 4)
-    public Stock_Symbol getStock_symbol(){
-        return stock_symbol;
+    public StockSymbolDAO getStock_symbolDAO(){
+        return stock_symbolDAO;
     }
 
     /**
      * Specify the stock being watched.
      * @param stocksymbol the stock symbol 4 characters long
      */
-    public void setStock_symbol(Stock_Symbol stocksymbol){
-        this.stock_symbol = stocksymbol;
+    public void setStock_symbolDAO(StockSymbolDAO stocksymbol){
+        this.stock_symbolDAO = stocksymbol;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Person_Stocks {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Person_Stocks that = (Person_Stocks) o;
+        PersonStockDAO that = (PersonStockDAO) o;
 
         if (id != that.id) return false;
 
@@ -97,17 +97,17 @@ public class Person_Stocks {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + person.hashCode();
-        result = 31 * result + stock_symbol.hashCode();
+        result = 31 * result + personDAO.hashCode();
+        result = 31 * result + stock_symbolDAO.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "Person_Stocks{" +
+        return "PersonStockDAO{" +
                 "id=" + id +
-                ", person=" + person +
-                ", stocksymbol=" + stock_symbol +
+                ", personDAO=" + personDAO +
+                ", stocksymbol=" + stock_symbolDAO +
                 '}';
     }
 

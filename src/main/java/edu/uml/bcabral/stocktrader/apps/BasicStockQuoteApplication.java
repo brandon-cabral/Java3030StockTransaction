@@ -136,7 +136,7 @@ public class BasicStockQuoteApplication {
         } catch (StockServiceException e) {
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
             programTerminationMessage = "StockService failed: " + e.getMessage();
-        } catch(Throwable t){
+        } catch (Throwable t) {
             exitStatus = ProgramTerminationStatusEnum.ABNORMAL;
             programTerminationMessage = "General Application Error: " + t.getMessage();
         }
@@ -144,4 +144,6 @@ public class BasicStockQuoteApplication {
         exit(exitStatus, programTerminationMessage);
         System.out.println("Oops could not parse a date");
     }
+
+
 }
