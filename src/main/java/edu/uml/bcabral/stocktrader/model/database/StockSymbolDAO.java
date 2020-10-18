@@ -1,11 +1,11 @@
-package edu.uml.bcabral.stocktrader.model;
+package edu.uml.bcabral.stocktrader.model.database;
 
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="stock_symbol")
-public class Stock_Symbol {
+public class StockSymbolDAO {
 
     private int id;
     private String stock_symbol;
@@ -44,7 +44,7 @@ public class Stock_Symbol {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Stock_Symbol stocksymbol = (Stock_Symbol) o;
+        StockSymbolDAO stocksymbol = (StockSymbolDAO) o;
 
         if (id != stocksymbol.id) return false;
         if (stock_symbol != null ? !stock_symbol.equals(stocksymbol.stock_symbol) : stocksymbol.stock_symbol != null) {

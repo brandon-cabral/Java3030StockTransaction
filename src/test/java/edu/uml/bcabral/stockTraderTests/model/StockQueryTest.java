@@ -1,7 +1,6 @@
 package edu.uml.bcabral.stockTraderTests.model;
 
 import edu.uml.bcabral.stocktrader.model.StockQuery;
-import edu.uml.bcabral.stocktrader.model.StockSymbolType;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

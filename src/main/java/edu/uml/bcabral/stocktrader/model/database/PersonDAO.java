@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stocktrader.model;
+package edu.uml.bcabral.stocktrader.model.database;
 
 import javax.persistence.*;
 
@@ -8,8 +8,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="person")
-public class Person {
+@Table(name="person", schema = "", catalog = "stocks")
+public class PersonDAO {
 
     private int id;
     private String user_name;
@@ -57,10 +57,10 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Person person = (Person) o;
+        PersonDAO personDAO = (PersonDAO) o;
 
-        if (id != person.id) return false;
-        if (user_name != null ? !user_name.equals(person.user_name) : person.user_name != null) {
+        if (id != personDAO.id) return false;
+        if (user_name != null ? !user_name.equals(personDAO.user_name) : personDAO.user_name != null) {
             return false;
         }
         return true;
@@ -75,7 +75,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "PersonDAO{" +
                 "id=" + id +
                 ", firstName='" + user_name + '\\' +
                 '}';

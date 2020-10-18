@@ -1,8 +1,8 @@
 package edu.uml.bcabral.stocktrader.services;
 
-import edu.uml.bcabral.stocktrader.model.Person;
-import edu.uml.bcabral.stocktrader.model.Person_Stocks;
-import edu.uml.bcabral.stocktrader.model.Stock_Symbol;
+import edu.uml.bcabral.stocktrader.model.database.StockSymbolDAO;
+import edu.uml.bcabral.stocktrader.model.database.PersonDAO;
+import edu.uml.bcabral.stocktrader.model.database.PersonStockDAO;
 import edu.uml.bcabral.stocktrader.util.DatabaseUtils;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -23,43 +23,43 @@ public class DatabasePersonService implements PersonService {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public List<Person> getperson() throws PersonServiceException {
+    public List<PersonDAO> getperson() throws PersonServiceException {
         Session session = DatabaseUtils.getSessionFactory().openSession();
-        List<Person> returnPersons = null;
+        List<PersonDAO> returnPersonDAOS = null;
         Transaction transaction = null;
 
         try{
             transaction = session.beginTransaction();
-            Criteria criteria = session.createCriteria(Person.class);
+            Criteria criteria = session.createCriteria(PersonDAO.class);
 
-            returnPersons = criteria.list();
+            returnPersonDAOS = criteria.list();
         }catch (HibernateException e){
             if (transaction != null && transaction.isActive()){
                 transaction.rollback(); //close transaction if Hibernate exception is thrown.
             }
-            throw new PersonServiceException("Could not get Person data. " + e.getMessage(), e);
+            throw new PersonServiceException("Could not get PersonDAO data. " + e.getMessage(), e);
         } finally {
             if (transaction != null && transaction.isActive()){
                 transaction.commit(); // closes transaction through rollback when done and successful.
             }
         }
-        return returnPersons;
+        return returnPersonDAOS;
     }
 
     /**
-     * Add a new person or update an existing Person's data.
+     * Add a new personDAO or update an existing PersonDAO's data.
      *
-     * @param person a person object to either update or create
+     * @param personDAO a personDAO object to either update or create
      * @throws PersonServiceException if a service can not read or write to the requested data
      *                                or otherwise perform the requested operation.
      */
     @Override
-    public void addOrUpdatePerson(Person person) {
+    public void addOrUpdatePerson(PersonDAO personDAO) {
         Session session = DatabaseUtils.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(person);
+            session.saveOrUpdate(personDAO);
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null && transaction.isActive()) {
@@ -75,14 +75,14 @@ public class DatabasePersonService implements PersonService {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Stock_Symbol> getStockSymbols(Person person){
+    public List<StockSymbolDAO> getStockSymbols(PersonDAO personDAO){
         Session session =  DatabaseUtils.getSessionFactory().openSession();
         Transaction transaction = null;
-        List<Stock_Symbol> stockSymbols = new ArrayList<>();
+        List<StockSymbolDAO> stockSymbols = new ArrayList<>();
         try {
             transaction = session.beginTransaction();
-            Criteria criteria = session.createCriteria(Person_Stocks.class);
-            criteria.add(Restrictions.eq("person", person));
+            Criteria criteria = session.createCriteria(PersonStockDAO.class);
+            criteria.add(Restrictions.eq("personDAO", personDAO));
 
             /**
              * NOTE criteria.list(); generates unchecked warning so SuppressWarnings
@@ -90,9 +90,9 @@ public class DatabasePersonService implements PersonService {
              * to suppress them - in almost all other cases they should be fixed not suppressed
              */
 
-            List<Person_Stocks> list = criteria.list();
-            for (Person_Stocks personStocks : list) {
-                stockSymbols.add(personStocks.getStock_symbol());
+            List<PersonStockDAO> list = criteria.list();
+            for (PersonStockDAO personStocks : list) {
+                stockSymbols.add(personStocks.getStock_symbolDAO());
             }
             transaction.commit();
         } catch (HibernateException e) {
@@ -108,14 +108,14 @@ public class DatabasePersonService implements PersonService {
     }
 
     @Override
-    public void addStockSymbolToPerson(Stock_Symbol stockSymbol, Person person) throws PersonServiceException {
+    public void addStockSymbolToPerson(StockSymbolDAO stockSymbol, PersonDAO personDAO) throws PersonServiceException, UnknownPersonException, UnknownStockSymbolException {
         Session session =  DatabaseUtils.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Person_Stocks personStocks = new Person_Stocks();
-            personStocks.setStock_symbol(stockSymbol);
-            personStocks.setPerson(person);
+            PersonStockDAO personStocks = new PersonStockDAO();
+            personStocks.setStock_symbolDAO(stockSymbol);
+            personStocks.setPersonDAO(personDAO);
             session.saveOrUpdate(personStocks);
             transaction.commit();
         } catch (HibernateException e) {

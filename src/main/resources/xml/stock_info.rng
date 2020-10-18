@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+        <element name="stocks">
+            <oneOrMore>
+                <element name="stock">
+                    <attribute name="price">
+                        <data type="decimal"/>
+                    </attribute>
+                    <attribute name="symbol">
+                        <data type="NCName"/>
+                    </attribute>
+                    <attribute name="time"/>
+                </element>
+            </oneOrMore>
+        </element>
+    </start>
+</grammar>

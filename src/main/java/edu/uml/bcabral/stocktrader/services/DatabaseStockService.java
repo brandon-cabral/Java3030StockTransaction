@@ -5,6 +5,11 @@ import edu.uml.bcabral.stocktrader.model.StockQuote;
 import edu.uml.bcabral.stocktrader.util.DatabaseConnectionException;
 import edu.uml.bcabral.stocktrader.util.DatabaseUtils;
 import edu.uml.bcabral.stocktrader.util.Interval;
+import edu.uml.bcabral.stocktrader.xml.Stock;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 import java.math.BigDecimal;
@@ -129,5 +134,54 @@ public class DatabaseStockService implements StockService {
         startDatePlusInterval.setTime(startDate);
         startDatePlusInterval.add(Calendar.MINUTE, interval.getMinutes());
         return endDate.after(startDatePlusInterval.getTime());
+    }
+    @Override
+    public void addOrUpdateStockQuotes(List<String> stock){
+        Session session = DatabaseUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(stock);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();  //close transaction if Hibernate exception is thrown.
+            }
+        } finally {
+            if (transaction != null && transaction.isActive()) {
+                transaction.commit();   // closes transaction through rollback when done and successful.
+            }
+        }
+    }
+
+    /**
+     * Get a list of all StockQuotes
+     *
+     * @return a list of stockquote instances
+     * @throws StockServiceException
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<StockQuote> getStockQuotes() throws StockServiceException {
+        Session session = DatabaseUtils.getSessionFactory().openSession();
+        List<StockQuote> returnQuotes = null;
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Criteria criteria = session.createCriteria(StockQuote.class);
+
+            returnQuotes = criteria.list();
+        }catch (HibernateException e){
+            if (transaction != null && transaction.isActive()){
+                transaction.rollback(); //close transaction if Hibernate exception is thrown.
+            }
+            throw new StockServiceException("Could not get stock data. " + e.getMessage(), e);
+        } finally {
+            if (transaction != null && transaction.isActive()){
+                transaction.commit(); // closes transaction through rollback when done and successful.
+            }
+        }
+        return returnQuotes;
     }
 }

@@ -1,6 +1,5 @@
 package edu.uml.bcabral.stockTraderTests.util;
 
-import edu.uml.bcabral.stockTraderTests.model.PersonTest;
 import edu.uml.bcabral.stocktrader.util.DatabaseUtils;
 import org.junit.Test;
 
