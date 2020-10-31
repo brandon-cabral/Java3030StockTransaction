@@ -2,6 +2,13 @@ package edu.uml.bcabral.stocktrader.model.database;
 
 import javax.persistence.*;
 
+/**
+ * Models the 'personStock' table in the 'stocks' database
+ *
+ */
+
+@Entity
+@Table(name = "person_stocks", schema = "", catalog = "stocks")
 public class PersonStockDAO {
 
     private int id;

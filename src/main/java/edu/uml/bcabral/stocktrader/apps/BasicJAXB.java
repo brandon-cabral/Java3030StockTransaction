@@ -82,11 +82,17 @@ public class BasicJAXB {
 
     public static void main(String[] args)throws JAXBException, ParserConfigurationException, IOException, SAXException, DatabaseConnectionException, DatabaseException {
 
+        /**
+         * Unmarshall the Stocks Pojo. Uses xmlInstance above.
+         */
         JAXBContext jaxbContext = JAXBContext.newInstance(Stocks.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         Stocks stocks = (Stocks) unmarshaller.unmarshal(new StringReader(xmlInstance));
         System.out.println(stocks);
 
+        /**
+         * Build a parseable document that I can iterate throguh based on elements.
+         */
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         InputSource src = new InputSource();
         src.setCharacterStream(new StringReader(xmlInstance));
@@ -99,6 +105,10 @@ public class BasicJAXB {
         for(int i = 0; i < nodeList.getLength(); i++){
             Node node = nodeList.item(i);
             Element element = (Element) node;
+
+            /**
+             * find attributes for each stock quote, then assign it to variable and assign to a stock pojo.
+             */
             String symbol = element.getAttribute("symbol");
             BigDecimal price = new BigDecimal(element.getAttribute("price"));
             String time = element.getAttribute("time");
@@ -106,9 +116,9 @@ public class BasicJAXB {
             stock.setTime(time);
             stock.setPrice(price);
             stock.setSymbol(symbol);
-            String queryString = stock.toDatabase();
-            System.out.println(queryString);
-//            DatabaseUtils.executeSQL(queryString);
+            String queryString = stock.toDatabase();    // call the toDatabase method that creates an sql query for the stockquote
+            System.out.println(queryString);            // test to see if I can see the converted quotes
+            DatabaseUtils.executeSQL(queryString);      //send the query to mysql db
         }
     }
 }

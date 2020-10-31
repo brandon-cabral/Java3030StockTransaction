@@ -13,6 +13,11 @@ public class StockQuote extends StockData {
     private String symbol;
 
     /**
+     * Default constructor
+     */
+    public StockQuote(){}
+
+    /**
      * Create a new instance of a StockQuote.
      *
      * @param price  the share price for the given date
