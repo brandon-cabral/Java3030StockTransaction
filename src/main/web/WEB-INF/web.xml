@@ -13,7 +13,7 @@
 
     <servlet-mapping>
         <servlet-name>StockGet</servlet-name>
-        <url-pattern>/servlet/*</url-pattern>
+        <url-pattern>/servlets/getStocks</url-pattern>
     </servlet-mapping>
 
 

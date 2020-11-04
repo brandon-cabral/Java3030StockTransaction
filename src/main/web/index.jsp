@@ -9,7 +9,7 @@
 <body>
     <h2>Stock Tracker</h2>
 
-    <a href="/servlets/StockGet">Click here to get stock quotes</a>
+    <a href="/servlets/getStocks">Click here to get stock quotes</a>
 
 </body>
 </html>

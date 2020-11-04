@@ -13,7 +13,7 @@
 
 <p>Enter the stock symbol, date from and date to in the boxes below</p>
 
-<form name="stockquoteform"  method="post">
+<form name="stockquoteform" action="servlets/stocks/" method="post">
         Stock Symbol: <input type="text" name="symbol" maxlength="4" value="xxxx">
             <br>
         Date From: <input type="text" name="date_from" maxlength="10" value="yyyy/MM/dd">
