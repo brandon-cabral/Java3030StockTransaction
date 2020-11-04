@@ -8,6 +8,7 @@
     <servlet>
         <servlet-name>StockGet</servlet-name>
         <servlet-class>edu.uml.bcabral.stocktrader.servlet.StockSearchServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
