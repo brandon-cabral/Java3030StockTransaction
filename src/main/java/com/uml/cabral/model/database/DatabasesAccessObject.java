@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stocktrader.model.database;
+package com.uml.cabral.model.database;
 
 /**
  * This is a maker interface which indicates implementers are DAO classes.

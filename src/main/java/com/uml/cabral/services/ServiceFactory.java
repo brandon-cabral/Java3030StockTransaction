@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stocktrader.services;
+package com.uml.cabral.services;
 
 
 

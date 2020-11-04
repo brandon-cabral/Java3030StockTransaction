@@ -1,4 +1,4 @@
-package edu.uml.bcabral.stocktrader.model;
+package com.uml.cabral.model;
 
 import java.math.BigDecimal;
 import java.util.Date;

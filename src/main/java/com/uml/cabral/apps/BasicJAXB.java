@@ -1,11 +1,11 @@
-package edu.uml.bcabral.stocktrader.apps;
+package com.uml.cabral.apps;
 
 
-import edu.uml.bcabral.stocktrader.util.DatabaseConnectionException;
-import edu.uml.bcabral.stocktrader.util.DatabaseException;
-import edu.uml.bcabral.stocktrader.util.DatabaseUtils;
-import edu.uml.bcabral.stocktrader.xml.Stock;
-import edu.uml.bcabral.stocktrader.xml.Stocks;
+import com.uml.cabral.util.DatabaseConnectionException;
+import com.uml.cabral.util.DatabaseException;
+import com.uml.cabral.util.DatabaseUtils;
+import com.uml.cabral.xml.Stock;
+import com.uml.cabral.xml.Stocks;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

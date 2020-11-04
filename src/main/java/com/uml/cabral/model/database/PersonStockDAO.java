@@ -1,5 +1,4 @@
-package edu.uml.bcabral.stocktrader.model.database;
-
+package com.uml.cabral.model.database;
 import javax.persistence.*;
 
 /**
