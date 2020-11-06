@@ -59,6 +59,6 @@ public class StockQuote extends StockData {
                 "price=" + price +
                 ", date= " + dateString +
                 " symbol='" + symbol + '\'' +
-                '}';
+                "}\n";
     }
 }
