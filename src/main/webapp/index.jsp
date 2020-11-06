@@ -1,12 +1,12 @@
 <html>
 <body>
-<h2>Hello Advanced Java Student!</h2>
+<h2>Stock Tracker: Advanced Java</h2>
 
 <h3>
     <UL>
 
 
-        <LI>Now checkout this simple <A href="stockquote.jsp">check stocks</A>
+        <LI>Track stocks <A href="stockquote.jsp">here</A>
 
     </UL>
 </h3>
